@@ -1,0 +1,24 @@
+== to_xls plugin
+
+Introduction goes here.
+
+
+== Usage
+
+  @posts.to_xls
+
+
+== Example
+
+#  class PostsController < ApplicationController
+#    def index
+#      @posts = Post.all
+#      
+#      respond_to do |format|
+#        format.xls { send_data(@posts.to_xls) }
+#      end
+#    end
+#  end
+
+
+Copyright (c) 2010 Wenke Liang, released under the MIT license
