@@ -5,6 +5,9 @@ Introduction goes here.
 
 == Usage
 
+  Add excel mime types for rails project at path RAILS_ROOT/config/initializers/mime_types.rb
+  Mime::Type.register "application/excel", :xls
+
   @posts.to_xls
 
 
