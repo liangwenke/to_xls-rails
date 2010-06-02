@@ -1,5 +1,4 @@
 require 'spreadsheet'
-require 'ruby-debug'
 
 class Array
   def to_xls
@@ -9,10 +8,8 @@ class Array
     
     columns = self.first.class.columns
     sheet.row(0).concat(columns.collect(&:human_name))
-    line = 2
-    self.each do |obj|
-      sheet.row(line).push( columns.collect{ |column| obj.send(column.name) } )
-      line += 1
+    self.each_with_index do |obj, index|
+      sheet.row(index + 1).replace( columns.collect{ |column| obj.send(column.name) } )
     end
     
     book.write(xls_report)

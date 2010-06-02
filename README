@@ -20,5 +20,11 @@ Introduction goes here.
 #    end
 #  end
 
+== With Options
+
+  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.csv" 
+  options = { :type => "text/csv; charset=utf-8; header=present", :filename => filename }
+  send_data(@posts.to_csv, options)
+
 
 Copyright (c) 2010 Wenke Liang, released under the MIT license
