@@ -41,6 +41,8 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
 == Install
 
+  git clone http://github.com/wenke/to_xls.git OR
+  
   ./script/plugin install git://github.com/wenke/to_xls.git
 
 
