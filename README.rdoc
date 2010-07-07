@@ -5,6 +5,9 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
 == Usage
 
+  add bellow to RAILS_ROOT/config/initializers/mime_types.rb
+  Mime::Type.register_alias "text/excel", :xls
+  
   @posts = Post.all
   
   #
