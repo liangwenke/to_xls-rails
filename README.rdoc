@@ -46,7 +46,11 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
   git clone http://github.com/wenke/to_xls.git OR
   
+  rails 2
   ./script/plugin install git://github.com/wenke/to_xls.git
+
+  rails 3
+  rails plugin install git://github.com/wenke/to_xls.git
 
 
 == Note
