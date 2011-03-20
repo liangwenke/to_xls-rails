@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = "Export data to xls on Rails"
   s.description = "This simple plugin gives you the ability to call to_csv to a collection of activerecords. The builder options are the same as to_json / to_xml, except for the :include."
   
-  s.files        = Dir["{lib,test}/**/*", "[A-Z]*", "init.rb"] - ["Gemfile.lock"]
+  s.files        = Dir["{lib,test}/**/*", "[a-zA-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
 
   s.rubyforge_project = s.name
