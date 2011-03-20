@@ -1,1 +1,1 @@
-require 'to_xls'
+require 'to_xls-rails'
