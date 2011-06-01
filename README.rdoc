@@ -52,7 +52,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   bundle install
 
   with git
-  git clone http://github.com/liangwenke8/to_xls-rails.git
+  git clone http://github.com/liangwenke/to_xls-rails.git
 
 
 == Note

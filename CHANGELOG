@@ -5,4 +5,7 @@
   add gem dependency on gemspec file
 
 0.1.2
-  update document
+  update documentation
+
+1.0.0
+  fix typo

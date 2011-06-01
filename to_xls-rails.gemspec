@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version = version
   s.author = "LiangWenKe"
   s.email = "liangwenke.com@gmail.com"
-  s.homepage = "http://github.com/liangwenke8/to_xls-rails"
+  s.homepage = "http://github.com/liangwenke/to_xls-rails"
   s.summary     = "Export data to xls on Rails"
-  s.description = "This simple plugin gives you the ability to call to_csv to a collection of activerecords. The builder options are the same as to_json / to_xml, except for the :include."
+  s.description = "This simple plugin gives you the ability to call to_xls to a collection of activerecords. The builder options are the same as to_json / to_xml, except for the :include."
   
   s.files        = Dir["{lib,test}/**/*", "[a-zA-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
