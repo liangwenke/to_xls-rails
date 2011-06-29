@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.files        = Dir["{lib,test}/**/*", "[a-zA-Z]*", "init.rb"] - ["Gemfile.lock"]
   s.require_path = "lib"
   
-  s.add_development_dependency('spreadsheet', '~>0.6.5')
+  s.add_dependency('spreadsheet', '~>0.6.5')
 
   s.platform = Gem::Platform::RUBY
   s.required_rubygems_version = ">= 1.3.4"

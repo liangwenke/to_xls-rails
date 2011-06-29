@@ -19,6 +19,9 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   @posts.to_xls(:except => [:id])
   @posts.to_xls(:header => false)
 
+  # Translation of a column-value
+  @posts.to_xls{|column, value| column==:salutation ? t(value) : value}
+
 
 == Example
 
