@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    to_xls-rails (1.0.0)
+      spreadsheet (~> 0.6.5)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    ruby-ole (1.2.11.1)
+    spreadsheet (0.6.5.5)
+      ruby-ole (>= 1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  to_xls-rails!
