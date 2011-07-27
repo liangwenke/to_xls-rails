@@ -4,6 +4,8 @@ class Array
 
   def to_xls(options = {}, &block)
     return '' if self.empty?
+    
+    options.reverse_merge!(:header => true)
 
     xls_report = StringIO.new
     book = Spreadsheet::Workbook.new
@@ -17,13 +19,14 @@ class Array
 
     return '' if columns.empty?
 
-    sheet.row(0).concat(columns.map(&:to_s).map(&:humanize))
+    sheet.row(0).concat(columns.map(&:to_s).map(&:humanize)) if options[:header]
 
     self.each_with_index do |obj, index|
+      index = options[:header] ? (index + 1) : index
       if block
-        sheet.row(index + 1).replace(columns.map { |column| block.call(column, obj.send(column)) })
+        sheet.row(index).replace(columns.map { |column| block.call(column, obj.send(column)) })
       else
-        sheet.row(index + 1).replace(columns.map { |column| obj.send(column) })
+        sheet.row(index).replace(columns.map { |column| obj.send(column) })
       end
     end
 
