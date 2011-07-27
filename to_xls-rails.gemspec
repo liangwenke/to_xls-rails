@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-version = File.read(File.expand_path("../VERSION",__FILE__)).strip
+version = File.read(File.expand_path("../VERSION", __FILE__)).strip
 
 Gem::Specification.new do |s|
   s.name = 'to_xls-rails'

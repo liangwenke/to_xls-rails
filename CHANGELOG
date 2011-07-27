@@ -9,3 +9,7 @@
 
 1.0.0
   fix typo
+
+1.1.0
+  Translation of a column-value
+  Add options :header
