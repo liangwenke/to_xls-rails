@@ -19,7 +19,9 @@ class Array
 
     return '' if columns.empty?
 
-    sheet.row(0).concat(columns.map(&:to_s).map(&:humanize)) if options[:header]
+    if options[:header]
+      sheet.row(0).concat(options[:header_columns].blank? ? columns.map(&:to_s).map(&:humanize) : options[:header_columns])
+    end
 
     self.each_with_index do |obj, index|
       index = options[:header] ? (index + 1) : index
