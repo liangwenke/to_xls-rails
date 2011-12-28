@@ -25,7 +25,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   @posts.to_xls(:prepend => [["Col 0, Row 0", "Col 1, Row 0"], ["Col 0, Row 1"]])
 
   # Translation of a column-value
-  @posts.to_xls{|column, value| column==:salutation ? t(value) : value}
+  @posts.to_xls{|column, value, row_index| column==:salutation ? t(value) + " at #{row_index}" : value}
 
 
 == Example

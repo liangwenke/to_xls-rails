@@ -37,7 +37,7 @@ class Array
 
     self.each_with_index do |obj, index|
       if block
-        sheet.row(sheet_index).replace(columns.map { |column| block.call(column, obj.send(column)) })
+        sheet.row(sheet_index).replace(columns.map { |column| block.call(column, obj.send(column), index) })
       else
         sheet.row(sheet_index).replace(columns.map { |column| obj.send(column) })
       end
