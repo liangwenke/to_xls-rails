@@ -36,10 +36,10 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
-        #format.xls {
-	#  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
-        #  send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
-        #}
+  #      format.xls {
+  #	  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+  #       send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
+        }
       end
     end
   end
