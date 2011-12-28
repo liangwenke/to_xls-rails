@@ -7,17 +7,22 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
   add below to RAILS_ROOT/config/initializers/mime_types.rb
   Mime::Type.register_alias "text/excel", :xls
-  
+
   @posts = Post.all
-  
+
   #
   #  default are export header and all fileds
   #
-    
+
   @posts.to_xls
   @posts.to_xls(:only => [:title, :body])
   @posts.to_xls(:except => [:id])
   @posts.to_xls(:header => false)
+
+  # Will prepend above header
+  # | Col 0, Row 0 | Col 1, Row 0 |
+  # | Col 0, Row 1 |              |
+  @posts.to_xls(:prepend => [["Col 0, Row 0", "Col 1, Row 0"], ["Col 0, Row 1"]])
 
   # Translation of a column-value
   @posts.to_xls{|column, value| column==:salutation ? t(value) : value}
@@ -28,11 +33,11 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   class PostsController < ApplicationController
     def index
       @posts = Post.all
-      
+
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
         #format.xls {
-	      #  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls" 
+	      #  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
         #  send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
         #}
       end
@@ -43,7 +48,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 == Dependencies
 
   gem install spreadsheet
-  
+
 
 == Install
 
