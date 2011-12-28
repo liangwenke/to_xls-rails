@@ -37,9 +37,27 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
         #format.xls {
-	      #  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+	#  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
         #  send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
         #}
+      end
+    end
+  end
+
+  Works on Rails 3:
+
+  class PostsController < ApplicationController
+    def index
+      # add this to config/initializers/mime_types.rb
+      Mime::Type.register "application/vnd.ms-excel", :xls
+
+      @posts = Post.all
+
+      respond_to do |format|
+        format.xls {
+          send_data @posts.to_xls
+          return # prevet Rails to seek for index.xls.erb
+        }
       end
     end
   end
