@@ -1,6 +1,11 @@
-== to_xls plugin
+== to_xls-rails
 
-This simple plugin gives you the ability to call to_xls to a collection of activerecords. The builder options are the same as to_json / to_xml, except for the :include.
+This simple plugin gives you the ability to call to_xls to a collection of activerecords for Rails.
+
+
+== Install
+
+gem install to_xls-rails
 
 
 == Usage
@@ -11,7 +16,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   @posts = Post.all
   
   #
-  #  default are export header and all fileds
+  # default are export header and all fileds
   #
     
   @posts.to_xls
@@ -31,31 +36,18 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
       
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
-        #format.xls {
-	      #  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls" 
-        #  send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
-        #}
+        # format.xls {
+        #   filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls" 
+        #   send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
+        # }
       end
     end
   end
-
-
-== Dependencies
-
-  gem install spreadsheet
   
 
-== Install
+== Contributing
 
-  with gem
-  gem install to_xls-rails
-
-  with bundler
-  gem 'to_xls-rails'
-  bundle install
-
-  with git
-  git clone http://github.com/liangwenke/to_xls-rails.git
+  * {Juan Pablo Marzetti}[http://github.com/yonpols]Translation of a column-value
 
 
 == Note

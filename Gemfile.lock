@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    to_xls-rails (1.0.0)
+    to_xls-rails (1.1.1)
       spreadsheet (~> 0.6.5)
 
 GEM
@@ -15,4 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  spreadsheet (~> 0.6.5)
   to_xls-rails!
