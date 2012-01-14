@@ -4,7 +4,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
 
 == Install
-
+  gem install spreadsheet
   gem install to_xls-rails
 
 
@@ -12,20 +12,25 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
   add below to RAILS_ROOT/config/initializers/mime_types.rb
   Mime::Type.register_alias "text/excel", :xls
-  
+
   @posts = Post.all
-  
+
   #
   # default are export header and all fileds
   #
-    
+
   @posts.to_xls
   @posts.to_xls(:only => [:title, :body])
   @posts.to_xls(:except => [:id])
   @posts.to_xls(:header => false)
 
+  # Will prepend above header
+  # | Col 0, Row 0 | Col 1, Row 0 |
+  # | Col 0, Row 1 |              |
+  @posts.to_xls(:prepend => [["Col 0, Row 0", "Col 1, Row 0"], ["Col 0, Row 1"]])
+
   # Translation of a column-value
-  @posts.to_xls{|column, value| column==:salutation ? t(value) : value}
+  @posts.to_xls{|column, value, row_index| column==:salutation ? t(value) + " at #{row_index}" : value}
 
 
 == Example
@@ -33,7 +38,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   class PostsController < ApplicationController
     def index
       @posts = Post.all
-      
+
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
         # format.xls {
@@ -43,7 +48,26 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
       end
     end
   end
-  
+
+
+  Works on Rails 3:
+
+  class PostsController < ApplicationController
+    def index
+      # add this to config/initializers/mime_types.rb
+      Mime::Type.register "application/vnd.ms-excel", :xls
+
+      @posts = Post.all
+
+      respond_to do |format|
+        format.xls {
+          send_data @posts.to_xls
+          return # prevet Rails to seek for index.xls.erb
+        }
+      end
+    end
+  end
+
 
 == Contributors
 
