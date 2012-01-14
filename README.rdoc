@@ -5,7 +5,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 
 == Install
 
-gem install to_xls-rails
+  gem install to_xls-rails
 
 
 == Usage
@@ -47,7 +47,8 @@ gem install to_xls-rails
 
 == Contributing
 
-  * {Juan Pablo Marzetti}[http://github.com/yonpols]Translation of a column-value
+* {Juan Pablo Marzetti}[http://github.com/yonpols] Translation of a column-value
+* {Denis Yagofarov}[http://github.com/denyago] Add prepend options for above header
 
 
 == Note
