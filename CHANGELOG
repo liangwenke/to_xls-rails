@@ -1,18 +1,21 @@
 0.1.0
-  first commit
+  First commit
 
 0.1.1
-  add gem dependency on gemspec file
+  Added gem dependency on gemspec file
 
 0.1.2
-  update documentation
+  Update README.rdoc
 
 1.0.0
-  fix typo
+  Fixed typo
 
 1.1.0
   Translation of a column-value
-  Add options :header
+  Added options :header
 
 1.1.1
-  Add options :header_columns
+  Added options :header_columns
+
+1.1.2
+  Added prepend option. Prepend some data above header and access current array element index in &block
