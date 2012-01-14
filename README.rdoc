@@ -45,10 +45,10 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   end
   
 
-== Contributing
+== Contributors
 
-* {Juan Pablo Marzetti}[http://github.com/yonpols] Translation of a column-value
-* {Denis Yagofarov}[http://github.com/denyago] Add prepend options for above header
+* {Juan Pablo Marzetti}[http://github.com/yonpols] Added Support for Value-Substitution
+* {Denis Yagofarov}[http://github.com/denyago] Added prepend some data above header and access current array element index in &block
 
 
 == Note
