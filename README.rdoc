@@ -3,9 +3,37 @@
 This simple plugin gives you the ability to call to_xls to a collection of activerecords for Rails.
 
 
-== Install
-  gem install spreadsheet
+In your Gemfile:
+
+  gem 'to_xls-rails'# Last officially released gem
+  # gem "to_xls-rails", :git => "git://github.com/liangwenke/to_xls-rails.git" # Track git repo
+
+or, to install as a gem:
+
   gem install to_xls-rails
+
+or, to install as a plugin:
+
+  rails plugin install git://github.com/liangwenke/to_xls-rails.git
+
+In your controller:
+
+  def index
+    @posts = Post.all
+
+    respond_to do |format|
+      format.html
+      format.xls { send_data(@posts.to_xls) }
+      # format.xls {
+      #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
+      #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
+      # }
+    end
+  end
+
+In your view:
+
+  <%= link_to 'Excel Download', posts_path(:format => :xls %>
 
 
 == Usage
@@ -42,7 +70,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
       respond_to do |format|
         format.xls { send_data(@posts.to_xls) }
         # format.xls {
-        #   filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls" 
+        #   filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
         #   send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
         # }
       end
