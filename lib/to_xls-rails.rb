@@ -10,6 +10,9 @@ class Array
     options.reverse_merge!(:header => true)
 
     xls_report = StringIO.new
+
+    Spreadsheet.client_encoding = options[:client_encoding] || "UTF-8"
+
     book = Spreadsheet::Workbook.new
     sheet = book.create_worksheet
 
