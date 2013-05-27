@@ -38,6 +38,10 @@ class Array
       sheet_index += 1
     end
 
+    if options[:column_width]
+      options[:column_width].each_index {|index| sheet.column(index).width = options[:column_width][index]}
+    end
+
     self.each_with_index do |obj, index|
       if block
         sheet.row(sheet_index).replace(columns.map { |column| block.call(column, obj.send(column), index) })
