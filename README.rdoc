@@ -60,6 +60,9 @@ In your view:
   # Translation of a column-value
   @posts.to_xls{|column, value, row_index| column==:salutation ? t(value) + " at #{row_index}" : value}
 
+  # Added width options
+  @posts.to_xls(:column_width => [17,15,15,40,25,37])
+
 
 == Example
 
