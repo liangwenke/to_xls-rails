@@ -51,6 +51,13 @@ class Array
       sheet_index += 1
     end
 
+    unless options[:append].blank?
+      options[:append].each do |array|
+        sheet.row(sheet_index).concat(array)
+        sheet_index += 1
+      end
+    end
+
     book.write(xls_report)
 
     xls_report.string
