@@ -33,7 +33,7 @@ In your controller:
 
 In your view:
 
-  <%= link_to 'Excel Download', posts_path(:format => :xls %>
+  <%= link_to 'Excel Download', posts_path(:format => :xls) %>
 
 
 == Usage
