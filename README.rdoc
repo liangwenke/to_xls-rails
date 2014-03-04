@@ -22,7 +22,7 @@ In your controller:
     @posts = Post.all
 
     respond_to do |format|
-      format.html
+      format.html # don't forget if you pass html
       format.xls { send_data(@posts.to_xls) }
       # format.xls {
       #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
