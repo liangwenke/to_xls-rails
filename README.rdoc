@@ -1,42 +1,54 @@
 == to_xls-rails
 
-This simple plugin gives you the ability to call to_xls to a collection of activerecords for Rails.
+This simple gem allows you to export any database records from Rails to Excel
 
+
+== Example Walkthrough
 
 In your Gemfile:
 
-  gem 'to_xls-rails'# Last officially released gem
-  # gem "to_xls-rails", :git => "git://github.com/liangwenke/to_xls-rails.git" # Track git repo
+  gem 'to_xls-rails'
 
-or, to install as a gem:
+In your command line:
 
-  gem install to_xls-rails
+  bundle install
 
-or, to install as a plugin:
+Create an export def in your controller (define what you want to export):
 
-  rails plugin install git://github.com/liangwenke/to_xls-rails.git
-
-In your controller:
-
-  def index
-    @posts = Post.all
-
+  def export
+    @timecards = Timecard.find(:all, :conditions => "user_id", :order => "checkin_time ASC")
+    headers['Content-Type'] = "application/vnd.ms-excel"
+    headers['Content-Disposition'] = 'attachment; filename="Name of Report.xls"'
+    headers['Cache-Control'] = ''
     respond_to do |format|
-      format.html # don't forget if you pass html
-      format.xls { send_data(@posts.to_xls) }
-      # format.xls {
-      #   filename = "Posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
-      #   send_data(@posts.to_xls, :type => "text/xls; charset=utf-8; header=present", :filename => filename)
-      # }
+      format.html { render :layout => false }
     end
   end
 
-In your view:
 
-  <%= link_to 'Excel Download', posts_path(:format => :xls) %>
+Create an export.html.erb view:
+
+  <%= render 'show' %>
 
 
-== Usage
+Create an _show.html.erb partial (create a table for rendering properly in excel...a lot of trial and error):
+
+  <%= calendar @timecards, :start_day => :monday do |timecard| %>
+    <%= timecard.fullname %>
+    <%= timecard.hours %> hours
+  <% end %>
+
+Add link in your corresponding view file to export the report to Excel 
+
+  <%= link_to 'Export Report', home_export_url %>
+
+Lastly, config your route file with a post action (example if using home controller):
+
+  post "home/export"
+  
+
+  
+== Additional Usage Information
 
   add below to RAILS_ROOT/config/initializers/mime_types.rb
   Mime::Type.register_alias "text/excel", :xls
@@ -64,47 +76,11 @@ In your view:
   @posts.to_xls(:column_width => [17,15,15,40,25,37])
 
 
-== Example
-
-  class PostsController < ApplicationController
-    def index
-      @posts = Post.all
-
-      respond_to do |format|
-        format.xls { send_data(@posts.to_xls) }
-        # format.xls {
-        #   filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls"
-        #   send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
-        # }
-      end
-    end
-  end
-
-
-  Works on Rails 3:
-
-  class PostsController < ApplicationController
-    def index
-      # add this to config/initializers/mime_types.rb
-      Mime::Type.register "application/vnd.ms-excel", :xls
-
-      @posts = Post.all
-
-      respond_to do |format|
-        format.xls {
-          send_data @posts.to_xls
-          return # prevet Rails to seek for index.xls.erb
-        }
-      end
-    end
-  end
-
-
 == Contributors
 
 * {Juan Pablo Marzetti}[http://github.com/yonpols] Added Support for Value-Substitution
 * {Denis Yagofarov}[http://github.com/denyago] Added prepend some data above header and access current array element index in &block
-
+* {Anees Merzi}[http://github.com/yaboyanees] Added example walkthrough documentation in the Readme file
 
 == Note
 
