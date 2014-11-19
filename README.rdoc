@@ -52,6 +52,9 @@ In your view:
   @posts.to_xls(:except => [:id])
   @posts.to_xls(:header => false)
 
+  # Array of Hashes support
+  [ { name: 'ruby', version: '2.1.0' }, { name: 'rails', version: '4.1.0' } ].to_xls
+
   # Will prepend above header
   # | Col 0, Row 0 | Col 1, Row 0 |
   # | Col 0, Row 1 |              |
@@ -102,8 +105,12 @@ In your view:
 
 == Contributors
 
-* {Juan Pablo Marzetti}[http://github.com/yonpols] Added Support for Value-Substitution
-* {Denis Yagofarov}[http://github.com/denyago] Added prepend some data above header and access current array element index in &block
+* {Juan Pablo Marzetti}[http://github.com/yonpols]
+* {Denis Yagofarov}[http://github.com/denyago]
+* {MrCherry}[https://github.com/MrCherry]
+* {Andreas König}[https://github.com/koa]
+* {nikneroz}[https://github.com/nikneroz]
+* {Gordon B. Isnor}[https://github.com/gordonbisnor]
 
 
 == Note
