@@ -22,7 +22,7 @@ class Array
       if self.first.is_a? Hash
         columns = self.first.keys.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
       else
-        columns = self.first.class.attributes.keys.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
+        columns = self.first.attributes.keys.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
       end
     end
 
