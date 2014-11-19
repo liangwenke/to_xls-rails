@@ -19,7 +19,11 @@ class Array
     if options[:only]
       columns = Array(options[:only]).map(&:to_sym)
     elsif !self.empty?
-      columns = self.first.class.column_names.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
+      if self.first.is_a? Hash
+        columns = self.first.keys.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
+      else
+        columns = self.first.class.column_names.map(&:to_sym) - Array(options[:except]).map(&:to_sym)
+      end
     end
 
     return '' if columns.empty? && options[:prepend].blank?
@@ -44,9 +48,9 @@ class Array
 
     self.each_with_index do |obj, index|
       if block
-        sheet.row(sheet_index).replace(columns.map { |column| block.call(column, obj.send(column), index) })
+        sheet.row(sheet_index).replace(columns.map { |column| block.call(column, obj.is_a?(Hash) ? obj[column] : obj.send(column), index) })
       else
-        sheet.row(sheet_index).replace(columns.map { |column| obj.send(column) })
+        sheet.row(sheet_index).replace(columns.map { |column| obj.is_a?(Hash) ? obj[column] : obj.send(column) })
       end
       sheet_index += 1
     end
