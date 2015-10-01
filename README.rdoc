@@ -1,7 +1,7 @@
 == to_xls-rails
 
 This simple plugin gives you the ability to call to_xls to a collection of array for Rails.
-Aarry element support object: ActiveRecord, Mongid, Hash.
+Array element support object: ActiveRecord, Mongid, Hash.
 
 
 In your Gemfile:
